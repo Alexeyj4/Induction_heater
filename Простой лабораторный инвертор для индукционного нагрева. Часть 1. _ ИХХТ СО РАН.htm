@@ -1,0 +1,1142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" version="XHTML+RDFa 1.0" dir="ltr" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" class="js"><head profile="http://www.w3.org/1999/xhtml/vocab">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="http://www.icct.ru/sites/default/files/chem_0_0.jpg" type="image/jpeg">
+<meta name="HandheldFriendly" content="true">
+<link rel="shortlink" href="http://www.icct.ru/node/79">
+<meta name="Generator" content="Drupal 7 (http://drupal.org)">
+<link rel="canonical" href="http://www.icct.ru/node/79">
+<meta name="MobileOptimized" content="width">
+  <title>Простой лабораторный инвертор для индукционного нагрева. Часть 1. | ИХХТ СО РАН</title>
+  <style type="text/css" media="all">
+@import url("http://www.icct.ru/modules/system/system.base.css?o9438q");
+@import url("http://www.icct.ru/modules/system/system.menus.css?o9438q");
+@import url("http://www.icct.ru/modules/system/system.messages.css?o9438q");
+@import url("http://www.icct.ru/modules/system/system.theme.css?o9438q");
+</style>
+<style type="text/css" media="all">
+@import url("http://www.icct.ru/sites/all/modules/comment_notify/comment_notify.css?o9438q");
+@import url("http://www.icct.ru/modules/comment/comment.css?o9438q");
+@import url("http://www.icct.ru/sites/all/modules/date/date_api/date.css?o9438q");
+@import url("http://www.icct.ru/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?o9438q");
+@import url("http://www.icct.ru/modules/field/theme/field.css?o9438q");
+@import url("http://www.icct.ru/modules/node/node.css?o9438q");
+@import url("http://www.icct.ru/modules/search/search.css?o9438q");
+@import url("http://www.icct.ru/modules/user/user.css?o9438q");
+@import url("http://www.icct.ru/sites/all/modules/views/css/views.css?o9438q");
+@import url("http://www.icct.ru/sites/all/modules/ckeditor/css/ckeditor.css?o9438q");
+</style>
+<style type="text/css" media="all">
+@import url("http://www.icct.ru/sites/all/modules/ctools/css/ctools.css?o9438q");
+</style>
+<style type="text/css" media="all">
+@import url("http://www.icct.ru/sites/all/themes/skeletontheme/css/skeleton.css?o9438q");
+@import url("http://www.icct.ru/sites/all/themes/skeletontheme/css/style.css?o9438q");
+@import url("http://www.icct.ru/sites/all/themes/skeletontheme/css/buttons.css?o9438q");
+@import url("http://www.icct.ru/sites/all/themes/skeletontheme/css/layout.css?o9438q");
+@import url("http://www.icct.ru/sites/default/files/color/skeletontheme-7739a47a/colors.css?o9438q");
+</style>
+  <script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/jquery_002.js"></script>
+<script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/jquery.js"></script>
+<script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/drupal.js"></script>
+<script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/comment_notify.js"></script>
+<script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/ru_HS5ZVC26uT2vMFRY0_0yvNURvcqLTuOhES4Oqv1PQvU.js"></script>
+<script type="text/javascript" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/jquery_003.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"skeletontheme","theme_token":"5lYmgI8x41hILia5LNxPZoseiwoDXVORgUWAtmkrM5s","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/comment_notify\/comment_notify.js":1,"public:\/\/languages\/ru_HS5ZVC26uT2vMFRY0_0yvNURvcqLTuOhES4Oqv1PQvU.js":1,"http:\/\/yandex.st\/jquery\/1.10.2\/jquery.min.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/comment_notify\/comment_notify.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/themes\/skeletontheme\/css\/skeleton.css":1,"sites\/all\/themes\/skeletontheme\/css\/style.css":1,"sites\/all\/themes\/skeletontheme\/css\/buttons.css":1,"sites\/all\/themes\/skeletontheme\/css\/layout.css":1,"sites\/all\/themes\/skeletontheme\/color\/colors.css":1}},"urlIsAjaxTrusted":{"\/node\/79\/php.htm?destination=node\/79\/php.htm":true,"\/node\/79\/php.htm":true}});
+//--><!]]>
+</script>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-79 page-node-phphtm node-type-exper">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Перейти к основному содержанию</a>
+  </div>
+    <div id="wrap">
+    <div class="container">
+        
+                
+        <div class="clear"></div>
+        
+        <!-- #header -->
+                <div id="header" class="sixteen columns clearfix">   
+                
+            <div class="inner">
+    
+                                  <a href="http://www.icct.ru/" title="Главная" rel="home" id="logo">
+                    <img src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/chem-2_9.jpg" alt="Главная">
+                  </a>
+                                
+                                <div id="name-and-slogan">
+                
+                                        <div id="site-name">
+                    <a href="http://www.icct.ru/" title="Главная" rel="home">ИХХТ СО РАН</a>
+                    </div>
+                                        
+                                        <div id="site-slogan">
+                    Институт химии и химической технологии                    </div>
+                                    
+                </div>
+                            </div>
+        </div><!-- /#header -->
+        
+                
+        <div class="clear"></div>
+        
+        <!-- #navigation -->
+        <div id="navigation" class="sixteen columns clearfix">
+        
+            <div class="menu-header">
+                              <div class="region region-header">
+    <div id="block-system-main-menu" class="block block-system block-menu">
+
+    
+  <div class="content">
+    <ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/">Главная</a></li>
+<li class="expanded"><a href="http://www.icct.ru/history">Об Институте</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/charter">Устав</a></li>
+<li class="leaf"><a href="http://www.icct.ru/history" title="">История создания</a></li>
+<li class="leaf"><a href="http://www.icct.ru/scientific_directions" title="">Научные направления</a></li>
+<li class="leaf"><a href="http://www.icct.ru/jobs" title="">Вакансии</a></li>
+<li class="last leaf"><a href="http://www.icct.ru/node/207">Локальные акты</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/administration">Структура</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/administration" title="">Администрация</a></li>
+<li class="expanded"><a href="http://www.icct.ru/aspir">Аспирантура</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/postgraduate_study" title="">Материалы по теме</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/dissovet">Диссертационный совет</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/diss_council_declaration" title="">Материалы совета</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/labs">Лаборатории</a></li>
+<li class="leaf"><a href="http://www.icct.ru/young_scientists">Совет молодых ученых</a></li>
+<li class="last expanded"><a href="http://www.icct.ru/council_scientists">Ученый совет</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/academic_council_declaration" title="">Материалы совета</a></li>
+</ul></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/sc_cooperation">Научная деятельность</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/sc_cooperation" title="">Научное сотрудничество</a></li>
+<li class="expanded"><a href="http://www.icct.ru/s_results">Научные результаты</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/scientific_results" title="Динамические статьи по теме &quot;Научные результаты&quot;">Материалы по теме</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/node/107" title="">Научные школы</a></li>
+<li class="expanded"><a href="http://www.icct.ru/publications_and_patents">Публикации и патенты</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/publications" title="">Материалы по теме</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/technology" title="">Технологии</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/exp" title="">Экспериментатору</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/conferences" title="">Конференции</a></li>
+<li class="last leaf"><a href="http://www.icct.ru/node/155">Федеральные целевые программы</a></li>
+</ul></li>
+<li class="last leaf"><a href="http://www.icct.ru/contacts">Контакты</a></li>
+</ul>  </div>
+</div>
+  </div>
+                            </div>
+            
+        </div><!-- /#navigation -->
+        
+                <!-- #sidebar-first -->
+        <div id="sidebar-first" class="five columns">
+              <div class="region region-sidebar-first">
+    <div id="block-system-navigation" class="block block-system block-menu">
+
+    
+  <div class="content">
+    <ul class="menu"><li class="first expanded"><a href="http://www.icct.ru/history" title="">Об Институте</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/history" title="">История создания</a></li>
+<li class="leaf"><a href="http://www.icct.ru/scientific_directions" title="">Научные направления</a></li>
+<li class="leaf"><a href="http://www.icct.ru/smi" title="Раздел посвящен публикациям в средствах массовой информации о нашем Институте">СМИ об Институте</a></li>
+<li class="last leaf"><a href="http://www.icct.ru/jobs" title="">Вакансии</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/administration" title="">Структура</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/administration" title="">Администрация</a></li>
+<li class="expanded"><a href="http://www.icct.ru/aspir" title="">Аспирантура</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/postgraduate_study" title="">Материалы по теме</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/lib" title="">Библиотека</a></li>
+<li class="expanded"><a href="http://www.icct.ru/dissovet" title="">Диссертационный совет</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/diss_council_declaration" title="">Материалы совета</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/labs" title="">Лаборатории</a></li>
+<li class="leaf"><a href="http://www.icct.ru/young_scientists" title="">Совет молодых ученых</a></li>
+<li class="expanded"><a href="http://www.icct.ru/council_scientists" title="">Ученый совет</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/academic_council_declaration" title="">Материалы совета</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/zakupki" title="">Информация о закупках</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/tz" title="">Текущие закупки</a></li>
+</ul></li>
+<li class="last leaf"><a href="http://www.icct.ru/node/214" title="Охрана труда">Охрана труда</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/sc_cooperation" title="">Научная деятельность</a><ul class="menu"><li class="first leaf"><a href="http://www.icct.ru/sc_cooperation" title="">Научное сотрудничество</a></li>
+<li class="leaf"><a href="http://www.icct.ru/node/155" title="">Федеральные целевые программы</a></li>
+<li class="expanded"><a href="http://www.icct.ru/s_results" title="">Научные результаты</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/scientific_results" title="">Материалы по теме</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.icct.ru/node/107" title="">Научные школы</a></li>
+<li class="expanded"><a href="http://www.icct.ru/publications_and_patents" title="">Публикации и патенты</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/publications" title="">Материалы по теме</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.icct.ru/technology" title="">Технологии</a><ul class="menu"><li class="first last leaf"><a href="http://www.icct.ru/exp" title="">Экспериментатору</a></li>
+</ul></li>
+<li class="last leaf"><a href="http://www.icct.ru/conferences" title="">Конференции</a></li>
+</ul></li>
+<li class="last leaf"><a href="http://www.icct.ru/reg" title="">Регистрация на сайте</a></li>
+</ul>  </div>
+</div>
+<div id="block-user-login" class="block block-user">
+
+    <h2>Вход на сайт</h2>
+  
+  <div class="content">
+    <form action="/node/79/php.htm?destination=node/79/php.htm" method="post" id="user-login-form" accept-charset="UTF-8"><div><div class="form-item form-type-textfield form-item-name">
+  <label for="edit-name">Имя пользователя <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
+ <input id="edit-name" name="name" size="15" maxlength="60" class="form-text required" type="text">
+</div>
+<div class="form-item form-type-password form-item-pass">
+  <label for="edit-pass">Пароль <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
+ <input id="edit-pass" name="pass" size="15" maxlength="128" class="form-text required" type="password">
+</div>
+<div class="item-list"><ul><li class="first last"><a href="http://www.icct.ru/user/password" title="Запросить новый пароль по электронной почте.">Забыли пароль?</a></li>
+</ul></div><input name="form_build_id" value="form-Le7kjyK0g0E5S4HnReyk3R7E2PZngRLZAt11C7oOHmo" type="hidden">
+<input name="form_id" value="user_login_block" type="hidden">
+<div class="form-actions form-wrapper" id="edit-actions"><input id="edit-submit" name="op" value="Войти" class="form-submit" type="submit"></div></div></form>  </div>
+</div>
+<div id="block-search-form" class="block block-search">
+
+    
+  <div class="content">
+    <form action="/node/79/php.htm" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Форма поиска</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Поиск </label>
+ <input title="Введите ключевые слова для поиска." id="edit-search-block-form--2" name="search_block_form" size="15" maxlength="128" class="form-text" type="text">
+</div>
+<div class="form-actions form-wrapper" id="edit-actions--2"><input id="edit-submit--2" name="op" value="Поиск" class="form-submit" type="submit"></div><input name="form_build_id" value="form-6oCc6AcRzwqZf9wtkV1MacBMsX3Lfde5IEuo0UIoopc" type="hidden">
+<input name="form_id" value="search_block_form" type="hidden">
+</div>
+</div></form>  </div>
+</div>
+<div id="block-block-3" class="block block-block">
+
+    
+  <div class="content">
+    <!--<script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script>-->
+	
+        
+	<script type="text/javascript" language="JavaScript">
+
+	(function($) {
+		Drupal.behaviors.myBehavior = {
+			attach: function (context) {
+			$(document).ready(function() {
+
+			//Изменяем стиль некоторых компонентов
+			
+$('.date-display-single').css('line-height','30px').css('margin-bottom','20px').css('padding-bottom','20px').css('font-size','14px');
+
+			$('h2 a').css('font-weight','400');
+			$('label:contains("Ваше имя")').text('Ваше имя:  ');
+			$('label:contains("Comment")').text('Комментарий:');
+			$('a.username').before('&nbsp;');
+			//Удаляем ненужные компоненты
+			$('.feed-icon').hide();
+			//Выводим адрес почты
+			$('.dog').text('@icct');
+			$('.chem').text('chem');
+
+			});
+		}
+		};
+	})(jQuery);
+
+	</script>  </div>
+</div>
+  </div>
+        </div><!-- /#sidebar-first -->
+                
+                <div id="content" class="eleven columns">
+		        
+                    
+                            <div id="breadcrumb"><h2 class="element-invisible">Вы здесь</h2><div class="breadcrumb"><a href="http://www.icct.ru/">Главная</a><span class="sep">»</span>Простой лабораторный инвертор для индукционного нагрева. Часть 1.</div></div>
+                        
+            <div id="main">
+            
+                                
+                                
+                                <h1 class="title" id="page-title">
+                  Простой лабораторный инвертор для индукционного нагрева. Часть 1.                </h1>
+                                
+                                
+                                <div class="tabs">
+                                  </div>
+                                
+                                
+                                
+                  <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+    
+  <div class="content">
+    <div id="node-79" class="node node-exper clearfix" about="/node/79" typeof="sioc:Item foaf:Document">
+
+      <span property="dc:title" content="Простой лабораторный инвертор для индукционного нагрева. Часть 1." class="rdf-meta element-hidden"></span><span property="sioc:num_replies" content="0" datatype="xsd:integer" class="rdf-meta element-hidden"></span>
+      <div class="meta submitted">
+            <span property="dc:date dc:created" content="2014-04-24T17:01:12+08:00" datatype="xsd:dateTime" rel="sioc:has_creator">Опубликовано чт, 24/04/2014 - 17:01 пользователем <span class="username" xml:lang="" about="/user/17" typeof="sioc:UserAccount" property="foaf:name" datatype="">Андрей Лыткин</span></span>    </div>
+  
+  <div class="content clearfix">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Кухтецкий С.В., <a href="mailto:ku_@mail.ru">ku_@mail.ru</a></p>
+<ul><li><a class="Content_style" href="#%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5">Введение</a></li>
+<li><a class="Content_style" href="#%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+%D0%BF%D0%BE%D0%BB%D1%83%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE+%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%D0%B0">Принцип работы полумостового инвертора</a></li>
+<li><a class="Content_style" href="#%D0%9F%D1%80%D0%B5%D0%B4%D1%83%D0%BF%D1%80%D0%B5%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BE%D0%B1+%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Предупреждение об опасности</a></li>
+<li><a class="Content_style" href="#%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D0%B0+%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%BE%D0%B3%D0%BE+%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%D0%B0">Описание макета лабораторного инвертора</a>
+<ul><li><a class="Content_style" href="#%D0%92%D1%8B%D0%BF%D1%80%D1%8F%D0%BC%D0%B8%D1%82%D0%B5%D0%BB%D1%8C">Выпрямитель</a></li>
+<li><a class="Content_style" href="#%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C+%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">Модуль управления</a></li>
+<li><a class="Content_style" href="#%D0%A1%D0%B8%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9+%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C">Силовой модуль</a></li>
+</ul></li>
+<li><a class="Content_style" href="#%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%B5+%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5+%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%D0%B0">Первое включение инвертора</a></li>
+<li><a class="Content_style" href="#%D0%98%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9+%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2">Индукционный нагрев</a>
+<ul><li><a class="Content_style" href="#%D0%9D%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0">Нагрузка</a></li>
+<li><a class="Content_style" href="#%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F+%D0%B4%D0%B8%D0%B0%D0%B3%D0%BD%D0%BE%D1%81%D1%82%D0%B8%D0%BA%D0%B0">Дополнительная диагностика</a></li>
+<li><a class="Content_style" href="#%D0%9F%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1%D0%BD%D0%BE%D1%81%D1%82%D0%B8+%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8+%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE+%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0">Проверка работоспособности установки индукционного нагрева</a></li>
+<li><a class="Content_style" href="#%D0%9B%D0%B5%D0%B2%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D0%BF%D0%BB%D0%B0%D0%B2%D0%BA%D0%B0">Левитационная плавка</a></li>
+</ul></li>
+<li><a class="Content_style" href="#%D0%97%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5+%D0%B8+%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D1%8B">Заключение и выводы</a></li>
+<li><a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">Литература</a></li>
+<li><a class="Content_style" href="#%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Благодарности</a></li>
+<li><a class="Content_style" href="#%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5">Приложение</a></li>
+</ul><p><em>В статье подробно описана схема, конструкция и приведены 
+советы по изготовлению лабораторного инвертора, предназначенного для 
+индукционного нагрева и плавки. Инвертор может быть легко интегрирован в
+ существующее оборудование лабораторных установок (трубчатые печи, 
+прогреваемые трубопроводы, нагрев электропроводных тиглей и т.п.). Он 
+может также использоваться автономно для закалки и плавки (в том числе -
+ во взвешенном состоянии) небольших образцов металлов и сплавов 
+(несколько грамм). Мощность инвертора регулируется от 0 до 2 кВт, 
+диапазон рабочих частот – от 60 кГц до 300 кГц, питание – от сети 220В.</em><br>
+&nbsp;</p>
+<p><a name="Введение" id="Введение">Введение</a></p>
+<p>Инверторами называют устройства, обратные выпрямителям, т.е. - 
+преобразователи постоянного напряжения в переменное. Обычно термин 
+«инвертор» используется более узко: генератор переменного напряжения, 
+используемый в качестве источника питания. Выходное напряжение инвертора
+ может быть как промышленной частоты (50 Гц), так и повышенной (десятки,
+ сотни кГц и выше). Одно из важнейших преимуществ источников питания 
+повышенной частоты это резкое уменьшение массогабаритных параметров 
+трансформаторов. Другой положительный момент связан с тем, что 
+переключающие силовые элементы инверторов работают в ключевом режиме, 
+т.е. основная часть потерь энергии происходит лишь в моменты 
+переключения. Таким образом, современные быстродействующие 
+полупроводниковые ключи позволяют существенно увеличить кпд 
+преобразователей, приближая его для некоторых конструкций к 100%.</p>
+<p>Быстрое развитие и удешевление элементной базы силовой электроники 
+привело к тому, что некоторые классы инверторов прочно заняли свои ниши 
+уже даже в быту. Это мощные импульсные блоки питания современных 
+персональных компьютеров, электронные балласты для люминесцентных ламп, 
+сварочные инверторы и бытовые индукционные электроплитки. Доступность и 
+умеренная цена транзисторных инверторов также могли бы способствовать 
+более широкому их внедрению и в практику физико-химического 
+эксперимента. Вот далеко не полный список возможных приложений 
+инверторов в экспериментальной лаборатории.</p>
+<ul><li>1. Источники питания для печей с низкоомными трубчатыми нагревателями.<br>
+	2. Источники питания дуговых разрядов (плазмохимические реакторы с дуговым разрядом, электродуговая плавка).<br>
+	3. Источники питания высоковольтных неравновесных разрядов (импульсные 
+разряды, высокочастотные коронные и дуговые разряды, барьерные разряды 
+(озонаторы)).<br>
+	4. Индукционный нагрев (индукционные печи, закалка, плавка).</li>
+</ul><p>К сожалению, приобрести за разумную цену универсальный инвертор 
+мощностью несколько киловатт с регулируемой частотой преобразования до 
+двух-трех сотен килогерц – задача практически неразрешимая. Таких просто
+ нет в продаже по вполне понятным причинам. Во-первых, очень непроста 
+разработка такого универсального инвертора, пригодного к серийному 
+производству. Во-вторых, у таких унифицированных инверторов нет 
+непосредственного применения в быту. Поэтому производителям бытовой 
+техники проще и дешевле использовать специализированные решения для 
+каждого класса задач (сварка, электропитание, балласты и т.д.).</p>
+<p>С другой стороны, для исследовательской лаборатории универсальность и
+ гибкость оборудования – обычно один из самых важнейших критериев, часто
+ перевешивающий остальные. Это несколько смещает акценты в сторону 
+универсальных решений. Конечно, в ряде случаев можно попытаться 
+приспособить некоторые бытовые решения для исследовательских задач. 
+Например, можно приобрести и модифицировать готовый сварочный инвертор 
+для питания низковольтной дуги. Это может оказаться дешевле, чем 
+изготавливать инвертор в непрофильной лаборатории. Или можно 
+переоборудовать компьютерный блок питания для получения среднечастотного
+ инвертора на пару сотен ватт. Но грамотное выполнение таких задач 
+потребует от экспериментатора квалификации не меньше, чем изготовление 
+собственного инвертора, а гибкость и универсальность полученного решения
+ будет весьма невелика.</p>
+<p>Приведем еще несколько соображений, почему изготовление самодельного лабораторного инвертора может оказаться неплохим решением.</p>
+<ul><li>1. Во-первых, «нагрузка» на лабораторный инвертор обычно 
+существенно меньше, чем на бытовые или промышленные образцы. Поэтому 
+лабораторный инвертор может представлять собой скорее макет (прототип), 
+чем промышленный образец, готовый к серийному производству.<br>
+	2. Во-вторых, в условиях обычной исследовательской экспериментальной 
+лаборатории нет таких жестких требований к надежности и экономичности 
+устройства, как в промышленности или в быту. Это существенно «облегчает 
+обвязку», связанную с автоматическим контролем функционирования 
+устройства, защитой от внештатных ситуаций и перегрузок. Этот фактор 
+становится еще более весомым, если учесть, что работа с этим 
+оборудованием будет вестись достаточно квалифицированным персоналом.<br>
+	3. В-третьих, поскольку речь не идет о серийном выпуске отработанного 
+прототипа, то силовые комплектующие можно взять с большим избыточным 
+«запасом прочности». Одновременно можно упростить и схемотехнические 
+решения, повышающие надежность устройства.<br>
+	4. Ну и, наконец, универсальный лабораторный инвертор может (как 
+«конструктор») представлять собой набор отдельных модулей, часть из 
+которых может быть выполнена в виде макетов с навесным монтажом, 
+упрощающих их модификацию, анализ и ремонт. Модернизация и развитие этих
+ модулей («обвязка» защитными и диагностическими цепями, автоматизация 
+защиты и контроля) в условиях ограниченного бюджета может проводиться 
+постепенно, лишь по мере необходимости.</li>
+</ul><p>С учетом этих соображений в лаборатории плазмохимии ИХХТ СО РАН 
+был разработан и изготовлен прототип лабораторного инвертора, описанию 
+которого посвящена данная статья. Инвертор может работать в диапазоне 
+частот 60-300 кГц, мощность (для полумоста) – до 2 кВт. Все модули и 
+основные технические детали рассмотрены с детализацией, достаточной для 
+воспроизводства устройства любым квалифицированным экспериментатором, не
+ имеющим специальной подготовки в области силовой электроники. В конце 
+статьи приводятся примеры практического использования макета для нагрева
+ и плавки.<br>
+&nbsp;</p>
+<p><a name="Принцип работы полумостового инвертора" id="Принцип работы полумостового инвертора">Принцип работы полумостового инвертора</a></p>
+<p>Различные варианты инверторов подробно описаны литературе <a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">[1, 2]</a>.
+ В данной статье речь пойдет о так называемом двухтактном «полумостовом»
+ инверторе. Блок-схема полумостового инвертора представлена на рис.1.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-01-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-01-Big.jpg"></a><br><em>Рис.1. Блок-схема полумостового инвертора.</em></p>
+<p>Принцип его работы очень прост. Сетевое напряжение выпрямляется и 
+подается на конденсатор C, к которому подключен силовой модуль. Силовой 
+модуль содержит два полупроводниковых ключа (K1 и K2) и конденсаторный 
+делитель (C1 и C2). Нагрузка подключается к общим точкам ключей и 
+конденсаторов делителя. При помощи модуля управления ключи K1 и K2 
+включаются/выключаются попеременно с заданной частотой, подключая 
+связанный с ними конец нагрузки то к верхней (по схеме), то к нижней 
+шине питания. В результате на нагрузке получается переменное напряжение с
+ амплитудой, равной половине напряжения питания.</p>
+<p>Работа такого идеального инвертора, состоящего из идеальных ключей, 
+действительно выглядит довольно просто. Проблемы начинаются тогда, когда
+ мы приступаем к изготовлению реального инвертора из реальных 
+компонентов. Эти проблемы приводят не только к усложнению 
+схемотехнических решений, но и формируют вполне определенные требования к
+ типу используемых компонентов, качеству монтажа, правилам компоновки, 
+запуска и отладки. Без учета большинства этих требований сделать 
+работоспособный инвертор не удается. Дорогие силовые транзисторы будут 
+сгорать либо сразу при включении питания, либо в первые секунды работы.</p>
+<p>Рассмотрим вкратце некоторые из этих требований. Более подробно они будут обсуждаться при описании конкретных модулей.</p>
+<p>Первое требование - к модулю управления. Оно заключается в том, что 
+работа ключей K1 и K2 должна быть согласованной, т.е. они должны 
+открываться/закрываться попеременно и никогда не должны быть полностью 
+открыты одновременно. Это необходимо для устранения так называемых 
+«сквозных токов», текущих через оба открытых ключа, минуя нагрузку. 
+Обычно это приводит к разрушению ключей. Кроме этого, поскольку реальные
+ ключи имеют конечное (ненулевое) время открытия/закрытия, то 
+открывающие сигналы модуля управления должны подаваться с некоторой 
+задержкой после сигнала закрытия другого ключа. Эти задержки называются 
+«мертвым временем» (dead-time) и должны быть предусмотрены в любом 
+варианте модуля управления.</p>
+<p>Другая проблема связана с тем, что все реальные элементы и соединения
+ имеют конечную индуктивность. Поэтому даже при работе на чисто активную
+ нагрузку при закрытии ключей возникают «выбросы» напряжения. 
+Естественно, эти эффекты существенно возрастают при работе на 
+индуктивную нагрузку, которая и нужна для данной задачи. Для решения 
+этой проблемы обычно используют так называемые «возвратные диоды», 
+включенные параллельно ключам. Кроме этого, необходимо выбирать ключи с 
+некоторым запасом по рабочему напряжению (как минимум, вольт на 200).</p>
+<p>Еще одна группа проблем связана с паразитными индуктивностями 
+монтажа. Дело в том, что при очень быстром коммутировании больших токов 
+заметные «наводки» появляются даже на очень небольших индуктивностях. С 
+первого взгляда – просто «на пустом месте». Для того, чтобы 
+«почувствовать» эти эффекты, сделаем простую оценку. Пусть мы 
+коммутируем ток ΔJ ~ 10A за время Δt ~ 10нс (10-8 с). Напряжение U, 
+возникающее на индуктивности L, можно оценить как U ~ L ΔJ/Δt. 
+Индуктивность одного дюйма (2.54 см (!)) провода диаметром 1 мм порядка 
+10 нГн (10-8 Гн). В результате получаем наводку на этом дюйме провода U ~
+ 10-8*10/10-8 = 10 В (!). Это напряжение сравнимо с напряжением питания 
+микросхем драйверов для управления ключами! Такая наводка вполне может 
+открыть ключ в самый неподходящий момент (например, когда уже открыт 
+второй ключ) со всеми вытекающими печальными последствиями. Поэтому 
+правильная компоновка и монтаж играют особую роль в быстродействующей 
+силовой электронике.</p>
+<p>Единого рецепта здесь нет, но нужно придерживаться нескольких простых
+ правил, уменьшающих паразитные индуктивности (либо эффекты от их 
+наличия). Суть этих правил в следующем.</p>
+<ul><li>1. Силовые проводники, по которым текут коммутируемые токи, 
+нужно делать как можно короче, прямее и толще. Стараться избегать петель
+ таких проводников.<br>
+	2. По-возможности, необходимо разделять силовые и управляющие цепи, а 
+сами силовые элементы располагать как можно ближе друг к другу.<br>
+	3. При разводке земляных цепей придерживаться правила «одной точки». 
+Всегда нужно помнить о том, что на любом проводнике, по которому течет 
+большой ток, есть разность потенциалов, которая сопоставима с уровнем 
+управляющих сигналов. Поэтому не стоит, например, заземлять различные 
+элементы управляющих цепей в разных точках земляной шины, по которой 
+течет большой импульсный ток. Это чревато непредсказуемой работой 
+управляющего модуля.</li>
+</ul><p>На самом деле все не так уж страшно. Более того, многие 
+разработчики указывают правила монтажа для критических узлов в 
+документации к ним. Главное – не делать грубых ошибок. Тогда можно 
+изготовить, пусть не идеальный, но вполне работающий прибор.<br>
+&nbsp;</p>
+<p><a name="Предупреждение об опасности" id="Предупреждение об опасности">Предупреждение об опасности</a></p>
+<p><em><strong>Цепи выпрямителя и силового модуля находятся под высоким 
+напряжением без гальванической развязки от питающей сети. Поэтому при 
+работе с инвертором нужно соблюдать предельную осторожность. ВСЕ 
+МАНИПУЛЯЦИИ с этими модулями можно проводить ТОЛЬКО ПОСЛЕ ВЫКЛЮЧЕНИЯ 
+ПИТАНИЯ И ПОЛНОГО ОТКЛЮЧЕНИЯ ПРИБОРА ОТ СЕТИ!</strong></em></p>
+<p><a name="Описание макета лабораторного инвертора" id="Описание макета лабораторного инвертора">Описание макета лабораторного инвертора</a></p>
+<p>Перейдем теперь к описанию отдельных узлов лабораторного инвертора. Начнем с выпрямителя.</p>
+<p><a name="Выпрямитель" id="Выпрямитель">Выпрямитель</a></p>
+<p>В данной реализации инвертора это самый простой, но и самый 
+громоздкий узел. Он содержит большой и тяжелый ЛАТР (лабораторный 
+автотрансформатор) для регулирования выходного напряжения выпрямителя и 
+один громоздкий низкочастотный развязывающий трансформатор. Выбор такого
+ решения обусловлен следующими причинами.</p>
+<ul><li>1. На стадии первоначального знакомства с силовой электроникой и
+ отладки желательно иметь возможность плавно регулировать постоянное 
+напряжение, подаваемое на ключи. Самый простой способ, доступный 
+практически в любой экспериментальной лаборатории – это ЛАТР.<br>
+	2. Если взять за правило начинать и заканчивать работу инвертора при 
+«нулевом» положении ЛАТРа, то можно избежать необходимости создания 
+специальных цепей для первоначальной зарядки больших электролитических 
+конденсаторов фильтра.<br>
+	3. ЛАТР обладает большой индуктивностью, поэтому на первых порах можно убрать высокочастотные фильтры по цепи питания.<br>
+	4. На стадии знакомства с силовой электроникой возникает много 
+вопросов, ответы на которые проще найти экспериментально, путем 
+осциллографирования сигналов в различных точках схемы. Поскольку силовые
+ узлы инвертора не имеют гальванической развязки с питающей сетью, то на
+ первых порах ее лучше сделать. Хотя бы для процесса отладки, при работе
+ на малых мощностях. Самый эффективный способ – запитать весь инвертор 
+через развязывающий трансформатор подходящей мощности. Естественно, 
+коэффициент трансформации его должен быть близок к единице. Такая 
+развязка желательна также и для дополнительной безопасности самого 
+экспериментатора при отладке инвертора.</li>
+</ul><p>С учетом этих соображений первый вариант регулируемого 
+выпрямителя для лабораторного инвертора получается простым. Его схема 
+представлена на рис.2. Выпрямитель не содержит каких-нибудь дефицитных 
+деталей и узлов, надежен и весьма удобен в работе.</p>
+<p><a class="Content_style" href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-02-Big.jpg" target="_blank"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-02-Big.jpg"></a><br><em>Рис.2. Схема выпрямителя.</em></p>
+<p>Рассмотрим некоторые детали реализации выпрямителя. В качестве 
+выключателя и предохранителей можно взять обычный бытовой сдвоенный 
+автомат на 10-16 ампер. Подходящий 8-амперный ЛАТР можно найти в любой 
+экспериментальной лаборатории «со стажем». При отсутствии ЛАТРа на 
+стадии отладки (при работе на малых мощностях – 200-300 Вт) можно 
+использовать электронный аналог ЛАТРа на биполярных транзисторах (см., 
+например, <a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">[3]</a>).
+ При больших мощностях придется делать импульсный регулятор, 
+естественно, со всеми вытекающими последствиями. Поэтому на начальных 
+стадиях лучше все-таки приобрести ЛАТР, хотя стоят они сейчас недешево. 
+Как, впрочем, и другие низкочастотные трансформаторы. Это, кстати, еще 
+один аргумент в пользу перевода лабораторного хозяйства на импульсные 
+преобразователи.</p>
+<p>Развязывающий трансформатор TR можно заказать отдельно или же сделать
+ из старого ЛАТРа подходящей мощности. В последнем случае, если 
+использовать уже существующую обмотку ЛАТРа в качестве первичной, нужно 
+обратить особое внимание на межвитковую изоляцию. Желательно хорошенько 
+очистить обмотку от угольной пыли и залить лаком дорожку, где изоляция 
+обмотки снята. В качестве развязывающего трансформатора можно также 
+взять пару силовых (или небольших сварочных) трансформаторов, подходящей
+ мощности и включить их встречно. Например, у трансформаторов 220 на 36 
+вольт соединить 36-вольтовые обмотки, и использовать 220-вольтовые 
+обмотки как обмотки развязывающего трансформатора. После отладки 
+инвертора развязывающий трансформатор желательно убрать (особенно, если 
+он маломощный).</p>
+<p>Диодный мост VD1 лучше выбрать с запасом, ампер на 20-30 и рабочим 
+напряжением 1000 В. Например, KBPC3510, KBU25M и т.п.. Их лучше 
+установить на небольшую металлическую пластину в качестве радиатора, 
+хотя при мощности инвертора 1-2 кВт они практически не греются.</p>
+<p>Кнопка S3 и резистор R2 предназначены для разряда конденсатора C1 в 
+случае аварии. Например, при выгорании силовых ключей, на этом 
+конденсаторе может остаться высокое напряжение опасное для жизни. В 
+начале работы с силовой электроникой вероятности аварий достаточно 
+велики, поэтому желательно предусмотреть такой разрядник.</p>
+<p>Сам конденсатор C1 – электролитический, с рабочим напряжением не 
+менее 400 В. Он может быть составным. В случае последовательного 
+соединения конденсаторов обязательно нужно поставить выравнивающие 
+резисторы на 150-200 кОм, подключенные параллельно каждому конденсатору.
+ Конденсатор C2 – пленочный, с рабочим напряжением не менее 400 В.</p>
+<p>И, наконец, 10-амперный измеритель переменного тока на входе 
+инвертора и вольтметр постоянного напряжения на выходе выпрямителя 
+предназначены для контроля полного тока, потребляемого инвертором из 
+сети, и напряжения, подаваемого на полумост силового модуля. Этот 
+контроль особенно актуален при ручной регулировке мощности инвертора. В 
+качестве вольтметра очень удобно использовать недорогой китайский 
+цифровой мультиметр. К сожалению, такие мультиметры не рассчитаны на 
+длительное измерение больших токов (например, 10-амперный режим – не 
+дольше 10 сек с перерывами 15 мин), поэтому в качестве амперметра проще 
+использовать обычный стрелочный амперметр переменного тока.</p>
+<p>Никаких особых требований к компоновке выпрямителя нет. Поскольку по 
+цепям выпрямителя текут довольно большие токи (до 10 А в данном 
+инверторе), то монтаж необходимо выполнять короткими и толстыми 
+проводами сечением не менее 1.5 – 2 мм2. Общий вид одного из вариантов 
+выпрямителя представлен на рис.3 (без развязывающего трансформатора).</p>
+<p><a class="Content_style" href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-03-Big.jpg" target="_blank"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-03-Big.jpg"></a><br><em>Рис.3. Общий вид выпрямителя.</em></p>
+<p>Конечно же, в перспективе желательно заменить такой регулятор с 
+громоздким ЛАТРом на подходящий импульсный регулятор. Во-первых, он 
+гораздо компактнее и, во-вторых, он мог бы обеспечить некоторый запас по
+ мощности (до 6-10 кВт). Однако в данном проекте главная цель – получить
+ реально работающий инвертор для физико-химических экспериментов 
+максимально простым способом. Поэтому остановимся на этом варианте, а 
+импульсный регулятор оставим на будущее.</p>
+<p>Перейдем теперь к модулю управления.<br>
+&nbsp;</p>
+<p><a name="Модуль управления" id="Модуль управления">Модуль управления</a></p>
+<p>Естественно, схемотехника модуля управления определяется тем, какими 
+ключами он будет управлять. В данном инверторе в качестве ключей 
+используются мощные полевые транзисторы с изолированным затвором, 
+известные под аббревиатурой MOSFET (Metal Oxide Semiconductor Field 
+Effect Transistor) или по-русски - полевые МОП-транзисторы 
+(Метал-Оксид-Полупроводник). Популярно о таких транзисторах можно 
+почитать, например, в <a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">[1]</a>.
+ Однако, для данного раздела достаточно просто представлять MOSFET как 
+некий электронный выключатель, который управляется напряжением на 
+затворе (относительно истока). В открытом состоянии сопротивление между 
+истоком и стоком мало (в зависимости от типа транзистора - от нескольких
+ Ом до сотых долей Ома), а в закрытом – велико (десятки МОм и выше). Для
+ большинства транзисторов напряжение на затворе может изменяться в 
+пределах от -20 до + 20 Вольт. Если напряжение на затворе выше 
+порогового (порог обычно от +2 до +4 В) транзистор открывается, если 
+ниже – закрывается.</p>
+<p>Таким образом, для управления ключами мы должны подавать на затворы 
+транзистора положительные импульсы с напряжением 12-18 В. Это должны 
+быть две последовательности импульсов, передаваемые по двум отдельным 
+управляющим шинам, сдвинутые по времени относительно друг друга (рис.4).
+ Как уже отмечалось выше, для устранения сквозных токов должны быть 
+предусмотрены паузы (dead-time).</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-04-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-04-Big.jpg"></a><br><em>Рис.4. Диаграммы управляющих импульсов.</em></p>
+<p>Существует множество вариантов таких генераторов управляющих 
+импульсов. В данном проекте применено одно из простейших решений на 
+основе распространенной и недорогой микросхемы IR2153. Эта микросхема 
+представляет собой законченный автоколебательный драйвер полумоста для 
+электронных балластов люминесцентных ламп. Драйвер имеет фиксированную 
+длительность dead-time (1.2 мкс). Максимальное время нарастания и спада 
+импульсов 150 и 100 нс, соответственно. Поэтому максимальная частота 
+управляющих импульсов ограничена значением 300-350 кГц.</p>
+<p>К сожалению, мощность выходных каскадов этого драйвера (Io+- = 200 
+мА/400 мА) не позволяет его использовать непосредственно в качестве 
+драйвера затворов полевых транзисторов нашего инвертора. Причина в том, 
+что затворы мощных MOSFET-ов имеют довольно большую емкость (доходящую 
+до нескольких тысяч пикофарад), т.е. драйверы вынуждены работать на 
+большую емкостную нагрузку. Поэтому драйверы должны выдавать большие 
+токи. Иначе время переключения (и, следовательно, тепловые потери) 
+транзисторов будут велики. Оценим эти токи.</p>
+<p>В данном проекте в качестве ключей используются транзисторы 
+IXFH30N50. Производитель декларирует суммарную емкость затвор-исток и 
+затвор-сток Ciss = 5200-5700 пФ. Однако, в действительности реальная 
+(эффективная) емкость затвора гораздо больше. Здесь для оценки нужно 
+брать полный заряд, который необходимо передать затвору для того, чтобы 
+транзистор полностью открылся. Обычно эта величина тоже приводится в 
+datasheet. Для IXFH30N50 Qg(on) ~ 200-300 нКл. Таким образом, для 
+напряжения затвор-исток 10 В получаем Cэфф ~ 20-30 нФ. Это в 4-6 раз 
+больше, чем Ciss! Для того, чтобы время включения транзистора было 
+порядка 100 нс, драйвер должен заряжать емкость затвора током порядка 
+(2-3)*10-7 Кл / 10-7 сек ~ 2-3 A. Такой ток драйвер IR2153 выдать не 
+может. Поэтому в данном проекте IR2153 используется только как задающий 
+генератор, сигналы которого затем будут усиливаться. Схема генератора 
+представлена на рис.5.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-05-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-05-Big.jpg"></a><br><em>Рис.5. Генератор управляющих импульсов на IR2153.</em></p>
+<p>С выводов 5 (LO) и 7 (HO) мы получим сигналы, точно совпадающие с 
+сигналами, представленными на рис.4. Резисторы R3 и R4 и конденсатор C3 
+определяют частоту генерирования импульсов. Для указанных номиналов при 
+помощи резистора R3 эту частоту можно изменять в пределах приблизительно
+ от 60 до 300 кГц.</p>
+<p>Для усиления сигналов генератора управляющих импульсов существует 
+множество схемотехнических решений, как на дискретных элементах, так и 
+специализированные интегральные микросхемы (см., например, <a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">[4, 5]</a>).
+ В данном инверторе был применен не самый дешевый, но зато очень простой
+ вариант. Были использованы 6-амперные быстрые драйверы MAX4420. 
+Естественно, вместо этих драйверов можно поставить продукты других 
+производителей или собрать их на комплементарных парах транзисторов 
+(полевых или биполярных). Главное условие – они должны быть 
+быстродействующими (фронты и спады – до сотни наносекунд) и обеспечивать
+ токи несколько ампер. Однако проще и экономичнее – готовые интегральные
+ драйверы. Схема включения драйверов MAX4420 показана на рис.6.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-06-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-06-Big.jpg"></a><br><em>Рис.6. Фрагмент модуля управления.</em></p>
+<p>С выходов L и H мы получим усиленные управляющие импульсы, по форме совпадающие с сигналами на рис.4.</p>
+<p>Теперь осталось рассмотреть очень важный и непростой вопрос - 
+согласование уровней управляющих сигналов. Поскольку в основу силового 
+модуля у нас положен полумост, то возникает известная проблема 
+управления верхним плечом полумоста. Нам необходимо, чтобы драйвер 
+верхнего плеча выдавал управляющие импульсы не относительно земли (как 
+на рис.6), а относительно уровня истока верхнего транзистора (т.е. US1, 
+рис.7). Это уровень может изменяться в течение рабочего цикла 
+приблизительно от 0 (нижний ключ открыт, верхний закрыт) до напряжения 
+питания (нижний ключ закрыт, верхний открыт).</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-07-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-07-Big.jpg"></a><br><em>Рис.7. К согласованию уровней управляющих импульсов полумоста.</em></p>
+<p>Существуют несколько схемотехнических решений для сдвига уровня 
+сигнала верхнего плеча. Они делятся на два класса: с гальванической 
+развязкой и без. К первому классу относятся системы с оптической 
+развязкой и на импульсных трансформаторах. Ко второму классу относятся, в
+ частности, бутстрепные (bootstrap) схемы. Не вдаваясь в детали, 
+отметим, что бутстрепные схемы удобны при реализации хорошо отлаженных 
+решений. Однако на стадии освоения силовой электроники они доставляют 
+немало огорчений. Из-за отсутствия гальванической развязки при тепловом 
+пробое силовых транзисторов часто выгорает также и весь модуль 
+управления (вплоть до задающего генератора). Поэтому в данной работе 
+использован вариант с гальванической развязкой в виде импульсного 
+трансформатора. На частотах десятки-сотни килогерц изготовление 
+импульсных трансформаторов на ферритовом кольце не представляет никаких 
+трудностей. При наличии осциллографа нет проблем ни с корректировкой 
+количества витков, ни с подгонкой параметров снабберов, гасящих 
+паразитные выбросы и осцилляции. Полная схема модуля управления с 
+трансформаторной развязкой представлена на рис.8.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-08-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-08-Big.jpg"></a><br><em>Рис.8. Полная схема модуля управления с трансформаторной развязкой.</em></p>
+<p>Поскольку драйверы MAX4420 работают на индуктивную нагрузку, на их 
+выходы нужно поставить диоды VD6-VD9. Можно использовать любые быстрые 
+диоды SF, HER, UF и т.п. Снаббер C7-R5 предназначен для подавления 
+выбросов напряжения при работе на индуктивную нагрузку. Кроме этого, C7 
+удаляет постоянную составляющую.</p>
+<p>Импульсный трансформатор можно рассчитать, а можно просто подобрать 
+экспериментально по качеству сигналов на нагрузке, моделирующей затворы 
+MOSFET. При подборе количества витков можно руководствоваться простым 
+правилом: количество витков должно быть максимально возможным, но при 
+этом сердечник трансформатора не должен уходить в насыщение. При слишком
+ малом количестве витков импульсы на вторичных обмотках имеют спадающий 
+характер (т.е. у прямоугольных импульсов нет «полочки»), при слишком 
+большом – наоборот. Сердечник насыщается, магнитная проницаемость падает
+ и всплески получаются в конце импульсов. Во всем рабочем диапазоне 
+импульсы должны иметь плоские вершины. Параметры трансформатора, 
+использованного в данном инверторе, указаны на схеме. Размеры сердечника
+ несколько избыточны, но для данной конструкции это не важно. Мотать 
+обмотки лучше сразу в три провода, параллельно или перевив их, 
+равномерно распределяя витки по сердечнику. На рис.9 представлен вид 
+модуля управления, собранного на макетной плате.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-09-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-09-Big.jpg"></a><br><em>Рис.9. Общий вид макета модуля управления.</em></p>
+<p>Особых требований к монтажу здесь нет, кроме обычных правил для 
+импульсных схем. Нужно стараться располагать компоненты поближе к друг 
+другу, соединительные провода должны быть покороче и попрямее. 
+Конденсаторы C4, C5 и C6 необходимо располагать непосредственно у 
+корпусов соответствующих микросхем у ножек питания. В данном инверторе 
+модуль управления неплохо работает и просто на макетной плате (как на 
+рис.9).</p>
+<p>Питание модуля управления осуществляется от единого 
+нестабилизированного источника постоянного напряжения (20В, 8А), 
+представляющего собой накальный трансформатор, выпрямительный мост и 
+электролитический конденсатор на 1000 мкф в качестве фильтра. Для 
+получения стабилизированных напряжений 12В и 15В используются микросхемы
+ стабилизаторов LM7812 и LM7815, включенных согласно datasheet. В 
+принципе, драйвер IR2153 содержит внутри стабилитрон, поэтому его можно 
+просто запитать через резистор от тех же стабилизированных 15В. Но для 
+повышения помехоустойчивости лучше его запитать через отдельный 
+стабилизатор. От этого же общего нестабилизированного источника питается
+ и вентилятор силового модуля (через еще одну LM7812 с небольшим 
+радиатором). На рис.9 эти стабилизаторы находятся в левой части платы.</p>
+<p>На рис.10 представлена осциллограмма сигнала на выходе блока 
+управления (на конденсаторах Cэфф = 3300 пФ, на щупе осциллографа – 
+делитель 1:10).</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-10-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-10-Big.jpg"></a><em>Рис.10. Осциллограммы управляющих сигналов на эквивалентах затворов (нижнее плечо слева и верхнее - справа).</em></p>
+<p>Фронты и спады на емкостную нагрузку порядка 130-160 нс, «полочки» 
+хорошо выражены, выбросы не превышают 0.5В. Необходимо учесть, что 
+эффективная емкость реальных транзисторов гораздо больше (как правило, в
+ 4 и более раз), поэтому при работе на реальные затворы фронты будут 
+положе.</p>
+<p>Подобная форма импульсов и длительности переходов сохраняются во всем
+ рабочем диапазоне 60-300 кГц (см. рис.11). На этом рисунке представлены
+ осциллограммы на границах диапазона. Видно, что спад вершины импульса 
+при низких частотах (правая осциллограмма) несущественный.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-11-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-11-Big.jpg"></a><em>Рис.11. Форма сигналов на высоких (306 кГц) и низких (62 кГц) частотах.</em></p>
+<p>В заключение этого раздела отметим еще один положительный момент, 
+связанный с применением трансформаторной развязки. Такое включение 
+трансформатора, как на рис.8, превращает наш однополярный драйвер в 
+двухполярный. Т.е. в полупериод, когда транзистор силового модуля должен
+ быть закрыт, на его затвор подается отрицательный импульс (а не ноль, 
+как в однополярном). Для приборов с изолированным затвором это 
+допускается. Подача отрицательного сигнала на затвор позволяет 
+существенно повысить помехоустойчивость силового модуля от наводок, 
+избежать ложных срабатываний (открытий) транзисторов без дополнительных 
+«обвязок» их затворов.<br>
+&nbsp;</p>
+<p><a name="Силовой модуль" id="Силовой модуль">Силовой модуль</a></p>
+<p>Как уже отмечалось выше, в данном инверторе силовой модуль представляет собой полумост. Его полная схема представлена на рис.12.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-12-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-12-Big.jpg"></a></p>
+<p><em>Рис.12. Схема силового модуля.</em></p>
+<p>В качестве ключей использованы транзисторы IXFH30N50 фирмы IXYS. Они 
+почему-то гораздо дешевле аналогичных приборов других производителей. 
+Эти транзисторы рассчитаны на ток до 30 А и рабочее напряжение до 500 В.
+ Сопротивление «исток-сток» в открытом состоянии – 0.16 Ом. Можно было 
+бы поставить и менее мощные транзисторы, но экономия будет 
+несущественной, а запас мощности никогда не помешает. Единственной 
+веской причиной для использования транзисторов попроще было бы 
+уменьшение емкости затвора и заряда, необходимого для открытия 
+транзистора. Но в данной разработке мы используем драйверы достаточно 
+мощные и для этих транзисторов.</p>
+<p>В цепях затворов мы используем только резисторы R7 и R8, которые 
+ограничивают токи зарядки емкостей затворов и гасят высокочастотный 
+«звон». В данном варианте силового модуля никаких дополнительных 
+элементов в цепях затворов нет.</p>
+<p>Силовые транзисторы шунтированы возвратными диодами VD10 и VD11. В 
+принципе, их можно не ставить, так как используемые транзисторы 
+(IXFH30N50) сами содержат не такие уж плохие внутренние диоды (trr 
+&lt;250 нс). Однако, если работать на повышенных частотах (сотни 
+килогерц), лучше поставить сверхбыстрые диоды. Под рукой оказались 
+MUR860 с trr &lt;60 нс, ток 8 А и напряжение 600 В. Вместо них можно 
+использовать другие сверхбыстрые диоды (например, HER или SF), 
+сопоставимые по параметрам. Можно взять и менее мощные (по току) диоды, 
+но тогда их желательно разместить в зоне обдува радиаторов транзисторов.</p>
+<p>Снабберы R9-C8 и R10-C9 также шунтируют ключи. Они служат для 
+подавления выбросов и особенно желательны при работе на индуктивную 
+нагрузку. Резисторы R9 и R10 заметно греются, поэтому их лучше 
+разместить в зоне обдува, либо использовать более мощные резисторы (5 – 
+10 Вт). Конденсаторы C8 и C9 должны быть рассчитаны на напряжение не 
+менее 600-800 В.</p>
+<p>Конденсаторы C10 и C11 тоже должны быть высоковольтными (не менее 400
+ В) и пленочными. Если они будут монтироваться вне зоны обдува, то лучше
+ их собрать из нескольких (3-4) конденсаторов меньшей емкости, 
+включенных параллельно. В данной работе каждый конденсатор собран из 
+трех по 0.47 мкФ. Их нагрев был незначительным даже без обдува.</p>
+<p>Теперь немного о конструкции силового модуля.</p>
+<p>Несмотря на то, что мы взяли довольно мощные транзисторы, нагрев их в
+ процессе работы будет все-таки ощутимым. Высоковольтные MOSFET имеют, к
+ сожалению, все-таки достаточно высокое сопротивление открытого канала. 
+Действительно, даже в полностью открытом состоянии на транзисторе будет 
+выделяться порядка 10-16 Вт тепла (0.16 Ом * (10 А)2 = 16 Вт). Плюс еще 
+потери при переключении и еще при повышенных частотах. Поэтому ключи 
+обязательно необходимо размещать на радиаторах. Разумные размеры 
+радиаторов получаются при условии их принудительного обдува. Очень 
+удобно использовать для этой цели кулеры (теплосъемники) мощных 
+компьютерных процессоров. Они содержат радиатор и вентилятор, 
+объединенные в одну конструкцию. В последние годы ассортимент кулеров 
+сильно расширился, и они заметно упали в цене. Цена бывшего в 
+употреблении кулера, даже с медным радиатором и сносно работающим 
+вентилятором, гораздо ниже стоимости большого дюралюминиевого радиатора.
+ Такой кулер и был положен в основу конструкции силового модуля, 
+представленного на рис.13.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-13-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-13-Big.jpg"></a><em>Рис.13. Силовой модуль.</em></p>
+<p>Транзисторы VT1 и VT2 размещены на изолирующих прокладках из слюды 
+непосредственно на подошве радиатора. Остальные компоненты припаяны к 
+выводам этих транзисторов и, по сути дела, на них и держатся. Термопара 
+для контроля температуры транзисторов размещена сверху и прижата к 
+медному основанию радиатора тоже через изолирующую прокладку. Прокладка 
+необходима для устранения наводок на термопару, так как радиатор не 
+заземлен и находится под плавающим потенциалом.</p>
+<p>Ну вот, по сути дела, и весь инвертор. Осталось соединить все модули вместе и приступить к испытаниям.<br>
+&nbsp;</p>
+<p><a name="Первое включение инвертора" id="Первое включение инвертора">Первое включение инвертора</a></p>
+<p>Для первого включения необходимо подключить развязывающий 
+трансформатор и небольшую активную нагрузку. В качестве нагрузки возьмем
+ лампу накаливания на 100 Вт. Вид собранного для испытаний инвертора 
+представлен на рис.14.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-14-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-14-Big.jpg"></a><em>Рис.14. Готовый к испытаниям инвертор.</em></p>
+<p>Первое испытание инвертора проводим по шагам.</p>
+<p>Шаг 1. Еще раз проверяем правильность монтажа и сборки инвертора. Полезно убрать все лишнее со стола.</p>
+<p>Шаг 2. Включаем питание блока управления. Только блока управления! 
+Высокое напряжение пока не включаем. Смотрим на экране осциллографа 
+сигналы на затворах ключей. Земляной разъем щупа осциллографа подключаем
+ к истоку соответствующего транзистора. Сигналы должны быть похожи на 
+сигналы, представленные на рис.10. В зависимости от используемых 
+транзисторов и драйверов фронты могут быть более пологие. Обязательно 
+проверяем фазировку сигналов. Для этой цели, конечно, лучше двухлучевой 
+осциллограф, но можно и однолучевым. В последнем случае запуск развертки
+ осциллографа необходимо выполнять от отдельного сигнала синхронизации. В
+ качестве такого сигнала удобно использовать один из выходов IR2153 (см.
+ рис.8). Осторожнее с земляными разъемами щупов! В данном случае мы 
+используем трансформаторную развязку, поэтому земляной разъем щупа в 
+силовом блоке можно спокойно подключать к истокам обоих транзисторов 
+полумоста. В противном случае для сигнала синхронизации нужно сделать 
+развязку. Иначе могут быть большие искры.</p>
+<p>Шаг 3. Если шаг 2 пройден успешно, подключаем щупы осциллографа 
+параллельно нагрузке. Проверяем положение ручки ЛАТРа. Она должна быть 
+на нуле! После этого включаем высокое напряжение. ЛАТРом плавно 
+поднимаем напряжение до 15-20 В. Контролируем это напряжение по 
+вольтметру выпрямителя. На экране осциллографа мы должны увидеть 
+импульсы напряжения на нагрузке, симметричные относительно нуля (как на 
+рис.15 слева).<br>
+&nbsp;</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-15-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-15-Big.jpg"></a><em>Рис.15.
+ Осциллограммы сигналов на активных нагрузках. Высокоомная (лампочка 100
+ Вт, 40 Ом) слева, низкоомная (лампочка 500 Вт, 8 Ом) справа. Щуп с 
+делителем 1:10.</em></p>
+<p>На самом деле это осциллограммы с шага 5. Но на этом шаге сигналы 
+должны быть точно такие же, только меньшей амплитуды. Я их привел здесь 
+для того, чтобы обсудить их форму. Мы видим медленно спадающие в течение
+ dead-time «хвосты» на высокоомной нагрузке (рис.15 слева). Это связано с
+ тем, что в течении dead-time оба транзистора закрыты. Поэтому чисто 
+активная нагрузка вместе со щупом осциллографа просто, как говорят, 
+«висит в воздухе». При отсутствии нагрузки (бесконечное сопротивление) 
+потенциал средней точки (между ключами) вообще не изменяется в течение 
+dead-time. Поэтому не нужно обращать внимание на эти хвосты. При 
+уменьшении сопротивления нагрузки форма сигнала будет приближаться к 
+классической (с «плечиками» dead-time). Чтобы убедиться в этом можно 
+взять более мощную лампочку с меньшим сопротивлением нити накала или 
+вообще другую нагрузку с сопротивлением 10-20 Ом. Осциллограммы для 
+лампочки на 500 Вт приведены на рис.15 справа. Мы видим, что все 
+работает правильно.</p>
+<p>Продолжим работу с лампочкой на 100 Вт.</p>
+<p>Шаг 4. Изменяем частоту инвертора от минимума да максимума. Форма 
+импульсов не должна радикально меняться. По крайней мере они должны 
+оставаться симметричными относительно нуля.</p>
+<p>Шаг 5. Если на шаге 3-4 все нормально, постепенно увеличиваем 
+напряжение до 100-120 вольт. Спираль лампочки начнет светиться. Первая 
+мощность от инвертора получена! «Погоняем» его так минут 30-40. 
+Температура радиатора не должна заметно уходить от комнатной.</p>
+<p>Шаг 6. Если осциллограф не позволяет работать при высоких напряжения,
+ то отключим щуп и плавно выведем напряжение на уровень 300-310 В. 
+Лампочка ярко светится. Следим за температурой радиаторов. Если нагрев 
+существенный – придется все-таки возиться с разрядкой затворов MOSFET. В
+ моих экспериментах в течение часа температура радиаторов превысила 
+комнатную лишь на 2-3 градуса. Не таким уж страшным оказалось наше 
+«недозакрывание» транзисторов. Спокойно работаем дальше. Общий вид 
+инвертора во время этого шага представлен на рис.16.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-16-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-16-Big.jpg"></a><em>Рис.16. Общий вид инвертора в процессе испытаний (через час работы на шаге 6).</em></p>
+<p>Шаг 7. Быстро выводим ЛАТР в 0 и быстро выключаем все питание 
+(сначала высокое, затем - питание модуля управления с вентилятором). 
+Внешней стороной пальца проверим температуру резисторов снабберов и 
+конденсаторов делителя (R9, R10 и C10, C11). Они не должны быть 
+горячими. Заодно проверим и радиатор. Так, на всякий случай. Вдруг у 
+термопары – плохой тепловой контакт.</p>
+<p>Все. Первые испытания инвертора закончены. Теперь можно переходить к индукционному нагреву.<br>
+&nbsp;</p>
+<p><a name="Индукционный нагрев" id="Индукционный нагрев">Индукционный нагрев</a></p>
+<p>Индукционный нагрев это технология, связанная с возбуждением вихревых
+ токов в проводящих образцах для их нагрева. В настоящее время 
+индукционный нагрев широко используется в различных отраслях 
+промышленности и даже в быту (например, бытовые индукционные плитки). 
+Однако, в исследовательской лаборатории индукционный нагрев – пока еще 
+экзотика. Может быть лабораторный инвертор, о котором идет речь в данной
+ статье, облегчит внедрение технологий индукционного нагрева в практику 
+физико-химического эксперимента. Мы продемонстрируем замечательные 
+возможности высокочастотных инверторов на одном красивом примере. Это – 
+плавка металла (алюминия) во взвешенном состоянии. Иногда этот процесс 
+называют плавкой в электромагнитном тигле или просто «левитационной 
+плавкой» (с англоязычного термина «levitation melting»). Здесь 
+высокочастотное электромагнитное поле не только греет и плавит металл, 
+но и удерживает его в пространстве без каких-нибудь тиглей или 
+ограничивающих стенок. Для того, чтобы осуществить такую плавку, нам 
+необходимо изготовить водоохлаждаемую нагрузку с индуктором специальной 
+формы и предусмотреть в системе некоторую дополнительную диагностику. 
+Начнем с нагрузки.<br>
+&nbsp;</p>
+<p><a name="Нагрузка" id="Нагрузка">Нагрузка</a></p>
+<p>Эквивалентная схема нагрузки для индукционного нагрева и плавки представлена на рис.17.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-17-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-17-Big.jpg"></a><br><em>Рис.17. Эквивалентная схема нагрузки для индукционного нагрева.</em></p>
+<p>Трансформатор TR2 изготовлен из двух колец К 45х28х12. Марка феррита М
+ 2000 НМ. Первичная обмотка – 26 витков провода МГТФ 0.75. Эта обмотка 
+подсоединяется непосредственно к выходу инвертора. Роль вторичной 
+обмотки, состоящей из одного витка, выполняет одна из отводных трубок 
+индуктора (медь, диаметр 6 мм), проходящая через центр кольца 
+трансформатора. Индуктор представляет собой катушку, содержащую 
+несколько витков (медная трубка диаметром 4 мм). Индуктор вместе с 
+конденсатором C образует последовательный колебательный контур, на 
+резонансную частоту которого должен быть настроен инвертор. Нагреваемый 
+образец, помещенный в индуктор на эквивалентной схеме можно представить 
+как активное сопротивление, индуктивно связанное с индуктором.</p>
+<p>Конструкция собранной нагрузки со специальным индуктором для плавки во взвешенном состоянии показана на рис.18 слева.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-18-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-18-Big.jpg"></a><em>Рис.18. Общий вид нагрузки и дополнительной диагностики.</em></p>
+<p>Поскольку данная статья посвящена, в основном, инвертору, а не 
+тонкостям индукционного нагрева, отметим только самые важные моменты, 
+касающиеся конструкции нагрузки.</p>
+<p>Во-первых, в нашем колебательном контуре проходят весьма большие токи
+ (сотни ампер). Поэтому медные трубки, образующие индуктор и подводы к 
+нему, при больших мощностях довольно сильно нагреваются. Их нужно 
+обязательно охлаждать. Проще всего использовать водяное охлаждение 
+непосредственно из водопровода. Поскольку в контуре имеется высокое 
+напряжение, необходимо предусмотреть электрическую развязку индуктора от
+ водопровода. Для этого подвод воды делаем тонкими длинными 
+диэлектрическими трубами. Длина этих труб зависит от проводимости 
+водопроводной воды. Проводимость воды в лаборатории автора составляет 
+величину порядка 100 мкСм/см, поэтому развязка в виде трубок диаметром 
+около 6 мм и длиной 5-6 м имеет достаточное для электрической развязки 
+сопротивление (около 50 Мом). Желательно также контролировать и 
+температуру охлаждающей воды. Это легко сделать при помощи металлической
+ вставки в сливной тракт. К ней можно прикрепить термопару, подключенную
+ к недорогому китайскому тестеру, в котором есть режим измерения 
+температуры (рис. 18 в левом верхнем углу). Очень удобно - сразу видно, 
+если забыл включить воду для охлаждения.</p>
+<p>Во-вторых, конденсатор C колебательного контура должен быть рассчитан
+ на довольно большую реактивную мощность. Необходимо использовать либо 
+специальные конденсаторы для индукционного нагрева, либо набирать 
+батарею из достаточно большого количества пленочных конденсатором 
+меньшей емкости, включенных параллельно. В данном контуре конденсаторная
+ батарея содержит 40 полипропиленовых высоковольтных конденсаторов 
+CBB81. Емкость каждого конденсатора - 0.033 мкФ, рабочее напряжение 2 
+кВ. Общая емкость батареи – 1.32 мкФ. Тангенс угла потерь их составляет 
+0.0008. Поэтому на каждом конденсаторе выделяются в виде тепла лишь 
+десятые доли ватта. Конденсаторы смонтированы свободно и хорошо 
+охлаждаются конвективными потоками воздуха. Поэтому, даже после получаса
+ работы на максимальной мощности они нагреваются незначительно (на 10-20
+ градусов).</p>
+<p>И, в-третьих. Для устойчивой левитационной плавки, конструкция 
+катушки индуктора должна иметь специальную форму. В данном случае 
+индуктор выполнен из медной трубки диаметром 4 мм в виде конуса. Угол 
+между образующей и горизонталью равен 65°. Индуктор содержит четыре 
+витка в прямом направлении и один – в обратном (противовиток). Это нужно
+ для того, чтобы внутри индуктора была область, в которой поле меньше, 
+чем вокруг нее. Проводник, помещенный в переменное электромагнитное 
+поле, выталкивается в область меньших полей. Поэтому без области с 
+минимальным полем положение образца внутри индуктора будет неустойчивым.
+ Для левитационной плавки небольших образцов коническая конструкция 
+индуктора с противовитком – одна из самых простых, но эффективных. 
+Подробнее о плавке во взвешенном состоянии и сравнительный анализ 
+различных конструкций индукторов см. в <a class="Content_style" href="#%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0">[5, 6]</a>.<br>
+&nbsp;</p>
+<p><a name="Дополнительная диагностика" id="Дополнительная диагностика">Дополнительная диагностика</a></p>
+<p>Для «ручной» настройки инвертора на резонанс при работе с резонансной
+ нагрузкой и оптимизации процесса нагрева полезно добавить к установке 
+еще пару измерителей, связанных с током, потребляемым нагрузкой.</p>
+<p>Первый измеритель предназначен для контроля среднеквадратичного тока.
+ Это трансформатор тока с двухполупериодным выпрямителем. Первичная 
+обмотка представлена проводом, идущим от инвертора к нагрузке и 
+проходящим через центр небольшого ферритового кольца. На этом кольце 
+намотана вторичная обмотка (20 – 30 витков провода с выводом от середины
+ обмотки). Далее при помощи двух диодов сигнал выпрямляется, фильтруется
+ и измеряется при помощи обычного китайского мультиметра.</p>
+<p>Второй измеритель также представляет собой трансформатор тока, 
+идущего в нагрузку, но служит для контроля осциллограммы сигнала. Он 
+устроен практически так же, как и в предыдущем случае, но вторичная 
+обмотка не содержит вывода из центра и нагружена на резистор в несколько
+ сотен Ом. С этого резистора сигнал подается на осциллограф. Очень 
+удобно при настройке на резонанс и контроле нештатных ситуаций.<br>
+&nbsp;</p>
+<p><a name="Проверка работоспособности установки индукционного нагрева" id="Проверка работоспособности установки индукционного нагрева">Проверка работоспособности установки индукционного нагрева</a></p>
+<p>Включаем воду охлаждения и все измерители, необходимые для контроля 
+процесса. Далее, сначала включается питание модуля управления и 
+вентилятора, а затем – источник высокого напряжения (выпрямитель). 
+Плавно при помощи ЛАТРа увеличиваем напряжение до 30-50 В. Затем, 
+медленно изменяя частоту инвертора (резистор R3 на рис. 8), пытаемся 
+настроить инвертор на резонанс. Резонанс настраиваем по максимуму тока, 
+потребляемого нагрузкой, контролируя его амплитуду по осциллографу. 
+После настройки на резонанс увеличиваем при помощи ЛАТРа напряжения на 
+силовом модуле до нужного уровня. Установка для индукционного нагрева 
+готова к работе.</p>
+<p>Выключение производится в обратном порядке. Сбрасываем высокое 
+напряжение (выводим ЛАТР в 0), затем выключаем его. После этого 
+выключается источник питания модуля управления. Дальше – в произвольном 
+порядке.</p>
+<p>Настройку на резонанс приходится выполнять не так уж часто. Опыт 
+показал, что при внесении в индуктор небольших ферромагнитных образцов, 
+расстройка контура не приводит к фатальному уменьшению поглощаемой 
+образцом мощности и он греется достаточно хорошо даже без дополнительной
+ подстройки частоты. При работе с немагнитными материалами резонансная 
+частота вообще практически не «уходит».</p>
+<p>На рис. 19 и рис. 20 представлены два примера, иллюстрирующие работу 
+инвертора в качестве индукционного нагревателя. Первый вариант – 
+ферромагнетик (просто - ручка надфиля), второй – немагнитный (кусок 
+нержавеющей трубки). По ссылкам ниже можно загрузить видео, показывающие
+ весь процесс. Ни в том, ни в другом случае никакой дополнительной 
+подстройки частоты не производилось.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-19-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-19-Big.jpg"></a><br><em>Рис.19. Нагрев ферромагнитного материала.</em></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-20-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-20-Big.jpg"></a><br><em>Рис.20. Нагрев немагнитного материала.</em></p>
+<p>При помощи пирометра ПД-4-02 была оценена температура графитового 
+образца, помещенного в индуктор, на воздухе, без теплоизоляции. При 
+максимальной мощности она была около 1300-1350°С. Так что для небольших 
+трубчатых печей с графитовым нагревателем наш инвертор вполне подходит. 
+Перейдем теперь к плавке.</p>
+<p>&nbsp;</p>
+<p><a name="Левитационная плавка" id="Левитационная плавка">Левитационная плавка</a></p>
+<p>Плавка во взвешенном состоянии – довольно увлекательное занятие. В 
+качестве образца для плавки выбран кусочек алюминия весом 2.6 гр. 
+Отдельные кадры, иллюстрирующие процесс плавки, приведены на рис.21. 
+Полное видео плавки можно загрузить по ссылке ниже.</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-01-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-01-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-02-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-02-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-03-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-03-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-04-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-04-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-05-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-05-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-06-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-06-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-07-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-07-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-08-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-08-Big.jpg"></a></p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-21-09-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-21-09-Big.jpg"></a></p>
+<p><em>Рис.21. Процесс плавки во взвешенном состоянии.</em></p>
+<p>Во взвешенном состоянии образец может находиться неограниченно долго.
+ Положение его довольно устойчивое. Оценка температуры верхушки образца 
+(в расплавленном состоянии при максимальной мощности) была сделана тем 
+же пирометром ПД-4-02 без поправки на излучательную способность 
+перегретого алюминия. Она равна 1150-1200°С.<br>
+&nbsp;</p>
+<p><a name="Заключение и выводы" id="Заключение и выводы">Заключение и выводы</a></p>
+<p>Двухнедельная работа с описанным в данной статье лабораторным 
+инвертором показала, что эта конструкция вполне может «трудиться» в 
+исследовательской лаборатории в качестве устройства для индукционного 
+нагрева и плавки. За это время было расплавлено более полусотни образцов
+ алюминия, около десятка образцов стали и несколько образцов меди. 
+Большинство плавок алюминия были выполнены во взвешенном состоянии. 
+Масса образцов 2-3 гр. Масса стальных и медных образцов тоже составляла 
+несколько грамм. Плавки проводились как в графитовых тиглях, так и без 
+них.</p>
+<p>Инвертор работал стабильно. Во всех этих экспериментах не случилось 
+никаких нештатных или аварийных ситуаций. Никаких перегревов или взрывов
+ транзисторов и других компонентов также не произошло. По сути дела, 
+работа с инвертором ничем не отличалась от работы с любым другим 
+несложным лабораторным прибором.</p>
+<p>Так что можно считать, что цель создания простого лабораторного 
+инвертора для индукционного нагрева и плавки небольших образцов металлов
+ достигнута.</p>
+<p>Естественно, в процессе разработки и практической работы с инвертором
+ накопился список необходимых модернизаций и улучшений, которые 
+желательно провести в ближайшем будущем. Первые в очереди из них 
+перечислены ниже.</p>
+<ul><li>1. Выпрямитель. Хотелось бы убрать громоздкий регулятор 
+напряжения на ЛАТРе и поставить что-нибудь более современное, компактное
+ и главное – с запасом по мощности.<br>
+	2. Модуль управления. Желательно удешевить «оконечники» (усилители) и 
+выбрать более доступные компоненты. В принципе, здесь ничего сложного 
+нет. Нужно просто проанализировать существующие в большом количестве 
+решения и выбрать наилучшее.<br>
+	3. Трансформаторные развязки. В данной конструкции мы использовали 
+самые простые решения. Мы «заплатили» за эту простоту качеством сигналов
+ и сравнительно пологими фронтами импульсов. В принципе, работать можно,
+ транзисторы греются приемлемо. Однако, лучше поработать в этом 
+направлении дополнительно.<br>
+	4. Силовой модуль. Желательно увеличить мощность инвертора до 4-5 кВт. В
+ принципе, можно увеличить мощность в два раза, практически ничего не 
+меняя в схемотехнике. Для этого достаточно перейти с полумоста на полный
+ мост. Добавится еще один кулер с парой транзисторов с «обвязкой» и пара
+ дополнительных обмоток на импульсном трансформаторе блока управления.</li>
+</ul><p>Поскольку лабораторный инвертор имеет модульную структуру, то 
+все эти модификации легко делать параллельно, не выводя инвертор надолго
+ из работы. Возможно, в результате этих модификаций удастся создать 
+действительно «бюджетный» вариант лабораторного инвертора. Это 
+способствовало бы более широкому внедрению технологий индукционного 
+нагрева в лабораторную практику.<br>
+&nbsp;</p>
+<p><a name="Литература" id="Литература">Литература</a></p>
+<p>&nbsp;</p>
+<ol><li>Семенов Б.Ю. Силовая электроника: от простого к сложному. – М.: СОЛОН-Пресс, 2005. – 416 с.</li>
+<li>Мелешин В.И. Транзисторная преобразовательная техника. М. Техносфера, 2005. – 632 с.</li>
+<li>Шандренко Д.А. Транзисторный регулятор напряжения.<br><a class="Content_style" href="http://electroscheme.org/2007/08/13/tranzistornyjj_reguljator_naprjazhenija.html" target="_blank">http://electroscheme.org/2007/08/13/tranzistornyjj_reguljator_naprjazhenija.html</a><br>
+	или<br><a class="Content_style" href="http://www.radiolub.orsk.info/Shems/Shems2/tr_reg.htm" target="_blank">http://www.radiolub.orsk.info/Shems/Shems2/tr_reg.htm</a></li>
+<li>Design Tips DT92-2A: High Current Buffer for Control IC’s.<br><a class="Content_style" href="http://www.irf.com/technical-info/designtp/dt92-2.pdf" target="_blank">http://www.irf.com/technical-info/designtp/dt92-2.pdf</a><br>
+	См. русский перевод: Мощный буфер тока для управления затворами МОП-транзисторов<br><a class="Content_style" href="http://vcoder.flyback.org.ru/electronics/power_buffer/Power%20buffer.pdf" target="_blank">http://vcoder.flyback.org.ru/electronics/power_buffer/Power%20buffer.pdf</a></li>
+<li>Фогель А.А. Индукционный метод удержания жидких металлов во взвешенном состоянии. Л. Машиностроение, 1979. – 104 с.</li>
+<li>Глебовский В.Г., Бурцев В.Т. Плавка металлов и сплавов во взвешенном состоянии. М. Металлургия, 1974. – 176 с.</li>
+</ol><p><a name="Благодарности" id="Благодарности">Благодарности</a></p>
+<p>Работа выполнена при частичной финансовой поддержке ОХНМ РАН (проект №5.5.3) и ГК № 02.740.11.0269.<br>
+&nbsp;</p>
+<p><a name="Приложение" id="Приложение">Приложение</a></p>
+<p>&nbsp;</p>
+<p><a href="http://www.icct.ru/sites/default/files/pictures/pic/30-03-2010/Picts/Pict-22-Big.jpg"><img alt="" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/Pict-22-Big.jpg"></a><br><em>Рис.22. Общая схема инвертора.</em></p>
+</div></div></div><div class="field field-name-field-expfile field-type-file field-label-above"><div class="field-label">Приложение:&nbsp;</div><div class="field-items"><div class="field-item even"><span class="file"><img class="file-icon" alt="PDF icon" title="application/pdf" src="%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D1%80%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B5%D0%B2%D0%B0.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201.%20_%20%D0%98%D0%A5%D0%A5%D0%A2%20%D0%A1%D0%9E%20%D0%A0%D0%90%D0%9D_files/application-pdf.png"> <a href="http://www.icct.ru/sites/default/files/Invertor-01.pdf" type="application/pdf; length=2342393">Invertor-01.pdf</a></span></div></div></div>  </div>
+
+      <div class="link-wrapper">
+      <ul class="links inline"><li class="comment_forbidden first last"><span><a href="http://www.icct.ru/user/login?destination=node/79%23comment-form">Войдите</a>, чтобы оставлять комментарии</span></li>
+</ul>    </div>
+  
+  
+</div>
+  </div>
+</div>
+  </div>
+                                
+            </div>
+        
+        </div><!-- /#content -->
+        
+                
+        <div class="clear"></div>
+        
+                
+	</div>
+        
+	<div id="footer">
+        <div class="container">
+        	<div class="sixteen columns clearfix">
+        
+                <div class="one_third">
+                                </div>
+                
+                <div class="one_third">
+                                </div>
+                
+                <div class="one_third last">
+                                </div>
+        
+                <div class="clear"></div>
+                
+                                
+                <div class="clear"></div>
+                
+                <div id="credits">
+                2018                                 ИХХТ СО РАН<br>
+                                </div>
+        	</div>
+        </div>
+    </div>
+    
+</div> <!-- /#wrap -->  
+
+</body></html>
